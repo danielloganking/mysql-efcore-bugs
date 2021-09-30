@@ -4,10 +4,10 @@ This example project is used to demonstrate a number of bugs found in the intera
 
 ## Version Info
 
-MySQL version: 8.0.25
-.NET runtime version: Core 3.1
-EF Core version: 5.0.5
-MySQL.EntityFrameworkCore version: 5.0.5
+- MySQL version: `8.0.25`
+- .NET runtime version: `Core 3.1`
+- EF Core version: `5.0.5`
+- MySQL.EntityFrameworkCore version: `5.0.5`
 
 ## Initial Setup
 
