@@ -4,17 +4,17 @@ using Xunit;
 
 namespace App.Tests
 {
-    public class ExampleDbContextTests : IDisposable
+    public class DateTimeOffsetBug : IDisposable
     {
         private readonly ExampleDbContext dbContext;
 
-        public ExampleDbContextTests()
+        public DateTimeOffsetBug()
         {
             dbContext = new ExampleDbContext();
         }
 
         [Fact]
-        public void StandardTimestamp_BehavesAsExpected()
+        public void StandardTimestamp_DeserializesFromDatabaseAsOriginalTime()
         {
             var now = DateTimeOffset.Now;
             var entity = new Entity() { Id = Guid.NewGuid() };
@@ -25,7 +25,7 @@ namespace App.Tests
         }
 
         [Fact]
-        public void UtcTimestamp_BehavesAsExpected()
+        public void UtcTimestamp_DeserializesFromDatabaseAsOriginalTime()
         {
             var now = DateTimeOffset.UtcNow;
             var entity = new Entity() { Id = Guid.NewGuid() };
