@@ -60,3 +60,29 @@ We expect the timestamp data to be returned either as the local `DateTime` with 
 ### Actual Behavior
 
 Timestamp data is returned as the UTC `DateTime` with a _local_ `Offset`. For example, storing 12:00-0400 is shifted to 16:00-0400 when it should be remain as is or be 16:00+0000.
+
+## 2. Directly Inserted UUIDs Do Not Match EF-Managed UUIDs
+
+### Problem
+
+When a UUID is added to the database via direct SQL, it does not match the format of an EF-inserted UUID such that it cannot be retrieved via EF, even when the string representation of the UUID is matches exactly. For example, if we add insert an item directly with the ID `UUD_TO_BIN('831136f0-aee0-47bc-b6ba-be04dc858990')` and then try to find the entity with ID `831136f0-aee0-47bc-b6ba-be04dc858990` EF will return NULL.
+
+Note, this is without configuring EF in any particular manner--the default behavior is misaligned.
+
+Furthermore, the `GuidFormat` connection string option is not supported to allow for configuring this.
+
+### Steps to Reproduce
+
+1. From the repo root run:
+
+    ```sh
+    dotnet test --filter FullyQualifiedName~App.Tests.DirectUuidInsertBug
+    ```
+
+### Expected Behavior
+
+We expect that saving a GUID in EF and saving the same via direct SQL (using the `UUID_TO_BIN` method) should produce the same binary representation of the GUID.
+
+### Actual Behavior
+
+GUIDs saved via direct SQL do not match the format of the same when saved using EF in the default configuration.
