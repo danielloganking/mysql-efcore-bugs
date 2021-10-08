@@ -37,6 +37,8 @@ This example project is used to demonstrate a number of bugs found in the intera
 
 ## 1. DateTimeOffset Inappropriate Time Shift
 
+Under review as [Bug 105091](https://bugs.mysql.com/bug.php?id=105091)
+
 ### Problem
 
 When using a `DateTimeOffset` column on an entity, MySQL is returning data shifted from the original timestamp (eg 12:00 -0400) to the UTC timestamp without updating the timezone info (eg returning 16:00 -0400 when it should be either 16:00 +0000 or the originally provided 12:00 -0400). Note, this applies regardless if the original `DateTimeOffset` is in UTC or local time.
@@ -62,6 +64,8 @@ We expect the timestamp data to be returned either as the local `DateTime` with 
 Timestamp data is returned as the UTC `DateTime` with a _local_ `Offset`. For example, storing 12:00-0400 is shifted to 16:00-0400 when it should be remain as is or be 16:00+0000.
 
 ## 2. Directly Inserted UUIDs Do Not Match EF-Managed UUIDs
+
+Accepted as [Bug 105142](https://bugs.mysql.com/bug.php?id=105142)
 
 ### Problem
 
