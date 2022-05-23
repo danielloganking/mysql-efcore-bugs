@@ -37,7 +37,7 @@ This example project is used to demonstrate a number of bugs found in the intera
 
 ## 1. DateTimeOffset Inappropriate Time Shift
 
-Under review as [Bug 105091](https://bugs.mysql.com/bug.php?id=105091)
+Accepted as [Bug 105091](https://bugs.mysql.com/bug.php?id=105091)
 
 ### Problem
 
